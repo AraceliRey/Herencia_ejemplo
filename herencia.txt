@@ -1,0 +1,102 @@
+HERENCIA
+
+Es la forma en la que reutilizas un codigo para crear otro.
+para crear la herencia necesitas derivar una clase hija de la clase madre.
+En C#, el operador :, que equivale a extends e implements en Java, 
+define la herencia e implementación de interfaces. 
+La clase madre siempre debe estar en el extremo izquierdo en la declaración de clase.
+cuando creas un clase hija automaticamente los metodos,atributos y propiedades son heredados de la clase madre.
+
+ 
+un ejemplo:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace EjemploDeHerencia
+{
+  
+    public class Operacion {  //CLASE MADRE
+        protected int v2; //VALOR 1
+        protected int v1; //VALOR 2
+        protected int r; //RESULTADO
+
+        public int V1 
+        {
+            set 
+            {
+                v1=value;
+            }
+            get
+            {
+                return v1;
+            }
+        }
+
+        public int V2 
+        {
+            set 
+            {
+                v2=value;
+            }
+            get
+            {
+                return v2;
+            }
+        }
+
+        public int Resultado
+        {
+            protected set 
+            {
+               r=value;
+            }
+            get
+            {
+                return r;
+            }
+        }        
+    }
+
+
+    public class Suma: Operacion // herencia... suma hereda de la clase Operacion
+    {
+        public void Operar() //METODO QUE AGREGA LA CLASE SUMA
+        {
+            Resultado=V1+2;
+        }
+    }
+
+
+    public class Resta: Operacion // herencia... Resta hereda de la clase Operacion
+    {
+        public void Operar() //METODO QUE AGREGA LA CLASE RESTA
+        {
+            Resultado=V1-V2;
+        }
+    }
+
+    class Prueba
+    {
+        static void Main(string[] args) // EL METODO MAIN 
+        {
+            Suma suma1 = new Suma();  // SE CREA EL OBJETO SUMA1 PARA VERIFICAR LAS OPERACION EN EL METODO MAIN
+            suma1.V1 = 10;
+            suma1.V2 = 7;
+            suma1.Operar();
+            Console.WriteLine("La suma de " + suma1.V1 + " y " + 
+              suma1.V2 + " es " + suma1.Resultado);
+
+            Resta resta1 = new Resta();  // SE CREA EL OBJETO RESTA1 PARA VERIFICAR LAS OPERACION EN EL METODO MAIN
+            resta1.V1 = 8;
+            resta1.V2 = 4;
+            resta1.Operar();
+            Console.WriteLine("La diferencia de " + resta1.V1 + 
+              " y " + resta1.V2 + " es " + resta1.Resultado);
+
+            Console.ReadKey();
+        }
+    }
+}
